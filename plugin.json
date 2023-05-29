@@ -1,0 +1,17 @@
+{
+    "name": "siyuan-plugin-power-mode",
+    "author": "zuoez02",
+    "url": "https://github.com/zuoez02/siyuan-plugin-webview-flomo",
+    "version": "0.1.0",
+    "displayName": {
+        "default": "Power Mode",
+        "zh_CN": "Power Mode"
+    },
+    "description": {
+        "default": "光标特效+屏幕抖动",
+        "zh_CN": "光标特效+屏幕抖动"
+    },
+    "readme": {
+        "default": "README.md"
+    }
+}
