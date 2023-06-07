@@ -69,7 +69,7 @@ const shakeCss = `
 
 
 module.exports = class WebAppPlugin extends Plugin {
-    async onload() {
+    onload() {
         this.config = Particles;
         document.addEventListener('keyup', this.shake, { capture: true });
         const style = document.createElement('style');
@@ -85,19 +85,6 @@ module.exports = class WebAppPlugin extends Plugin {
     }
 
     shake(e) {
-        if (!e.path) {
-            return;
-        }
-        let contentEl = null;
-        for (const el of e.path) {
-            if (el.classList && el.classList.contains('protyle-content')) {
-                contentEl = el;
-                break;
-            }
-        }
-        if (!contentEl) {
-            return;
-        }
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
         const rect = range.getBoundingClientRect();
@@ -117,10 +104,8 @@ module.exports = class WebAppPlugin extends Plugin {
             filter: 'saturate(150%)',
         }
         f.setAttribute('style', objectToCssString(css));
-        contentEl.classList.add('power-mode-shake');
         const remove = () => {
             f.remove();
-            contentEl.classList.remove('power-mode-shake');
         };
         document.body.appendChild(f);
         setTimeout(() => remove(), 400);
