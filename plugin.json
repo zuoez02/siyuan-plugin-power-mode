@@ -2,7 +2,7 @@
     "name": "siyuan-plugin-power-mode",
     "author": "zuoez02",
     "url": "https://github.com/zuoez02/siyuan-plugin-webview-flomo",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "displayName": {
         "default": "Power Mode",
         "zh_CN": "Power Mode"

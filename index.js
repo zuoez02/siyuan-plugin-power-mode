@@ -86,7 +86,12 @@ module.exports = class WebAppPlugin extends Plugin {
 
     shake(e) {
         const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
+        let range;
+        try {
+            range = selection.getRangeAt(0);
+        } catch {
+            return;
+        }
         const rect = range.getBoundingClientRect();
         const f = document.createElement('div');
         const explosion = Particles["explosions.customExplosions"][Math.floor(Math.random() * 10)];
