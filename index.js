@@ -85,7 +85,11 @@ module.exports = class WebAppPlugin extends Plugin {
     }
 
     shake(e) {
-        const selection = window.getSelection();
+        // fix https://github.com/zuoez02/siyuan-plugin-power-mode/issues/2
+        if (e.target.nodeName === 'INPUT' || e.target.nodeName === 'TEXTAREA') {
+            return;
+        }
+        const selection = document.getSelection();
         let range;
         try {
             range = selection.getRangeAt(0);
@@ -93,6 +97,7 @@ module.exports = class WebAppPlugin extends Plugin {
             return;
         }
         const rect = range.getBoundingClientRect();
+        console.log(rect);
         const f = document.createElement('div');
         const explosion = Particles["explosions.customExplosions"][Math.floor(Math.random() * 10)];
 
@@ -105,6 +110,7 @@ module.exports = class WebAppPlugin extends Plugin {
             'background-color': 'currentColor',
             '-webkit-mask-repeat': 'no-repeat',
             '-webkit-mask-size': 'contain',
+            'user-select': 'none',
             '-webkit-mask-image': `url("${explosion}")`,
             filter: 'saturate(150%)',
         }
@@ -112,8 +118,10 @@ module.exports = class WebAppPlugin extends Plugin {
         const remove = () => {
             f.remove();
         };
-        document.body.appendChild(f);
-        setTimeout(() => remove(), 400);
+        setTimeout(() => {
+            document.body.appendChild(f);
+            setTimeout(() => remove(), 400);
+        }, 50);
     }
 
 
